@@ -48,7 +48,7 @@ export class PaypalButtonComponent implements AfterViewInit, OnInit {
           purchase_units: [{
             amount: {
               value: this.product.price.toFixed(2) // Precio del producto seleccionado
-            },
+            },     
             description: this.product.name // Descripción del producto
           }]
         });
