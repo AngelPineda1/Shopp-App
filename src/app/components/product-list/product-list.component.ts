@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
 interface Product {
   id: number;
-  name: string;
+  title: string;
   price: number;
 }
 @Component({
@@ -38,5 +38,8 @@ export class ProductListComponent {
 
   selectProduct(product: Product) {
     this.selectedProduct = product;
+    console.log(product)
+    console.log(this.selectProduct)
   }
+
 }

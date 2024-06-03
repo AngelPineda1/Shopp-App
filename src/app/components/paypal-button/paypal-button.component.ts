@@ -8,8 +8,8 @@ declare var paypal: any;
   styleUrls: ['./paypal-button.component.css']
 })
 export class PaypalButtonComponent implements AfterViewInit, OnInit {
-  @Input() product!: { id: number, name: string, price: number };
-
+  @Input() product!: { id: number, title: string, price: number };
+  
   ngOnInit(): void {
     this.loadPaypalScript().then(() => {
       this.renderPaypalButton();
@@ -40,7 +40,6 @@ export class PaypalButtonComponent implements AfterViewInit, OnInit {
       document.body.appendChild(script);
     });
   }
-
   private renderPaypalButton(): void {
     paypal.Buttons({
       createOrder: (data: any, actions: any) => {
@@ -49,7 +48,8 @@ export class PaypalButtonComponent implements AfterViewInit, OnInit {
             amount: {
               value: this.product.price.toFixed(2) // Precio del producto seleccionado
             },     
-            description: this.product.name // Descripción del producto
+            description: this.product.title, // Descripción del producto
+          
           }]
         });
       },
