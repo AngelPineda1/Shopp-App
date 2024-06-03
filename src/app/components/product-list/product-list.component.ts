@@ -1,4 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { Observable } from 'rxjs';
 interface Product {
   id: number;
   name: string;
@@ -10,11 +12,27 @@ interface Product {
   styleUrl: './product-list.component.css'
 })
 export class ProductListComponent {
-  products: Product[] = [
-    { id: 1, name: 'Product 1', price: 10.00 },
-    { id: 2, name: 'Product 2', price: 20.00 },
-    { id: 3, name: 'Product 3', price: 30.00 },
-  ];
+  private apiUrl='https://api.escuelajs.co/api/v1/products';
+
+  constructor(private http:HttpClient) { 
+
+  }
+  products: any[]=[];
+  ngOnInit(): void {
+    this.getProducts().subscribe((data:any)=>{
+      console.log(data);
+      this.products=data;
+    })
+
+  }
+  getProducts():Observable<any>{
+
+    return this.http.get(this.apiUrl)
+  }
+
+  getProduct(id: number): Observable<any> {
+    return this.http.get(`${this.apiUrl}/${id}`);
+  }
 
   selectedProduct: Product | null = null;
 

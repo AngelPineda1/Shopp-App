@@ -19,7 +19,7 @@ export class PaypalButtonComponent implements AfterViewInit, OnInit {
   }
 
   ngAfterViewInit(): void {
-    // Deja este método vacío, ya que la lógica se ha movido a ngOnInit
+    
   }
 
   private loadPaypalScript(): Promise<void> {
