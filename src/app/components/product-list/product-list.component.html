@@ -1,38 +1,55 @@
+
 <div class="product-list">
-  <mat-toolbar color="primary">
-    <span>Product List</span>
+  <mat-toolbar >
+    <span>ClickAndBuy</span>
     <span class="spacer"></span>
     
   </mat-toolbar>
+
   <div class="product-container">
     <div class="product-item" *ngFor="let product of products">
       <mat-card class="product-card">
-        <mat-card-header>
-          <mat-card-title-group>
-            <mat-card-title>{{ product.title }}</mat-card-title>
-            <mat-card-subtitle>
-              <div>{{ product.category.name }}</div>
-              <div>Price: {{ product.price | currency }}</div>
-            </mat-card-subtitle>
-          </mat-card-title-group>
-        </mat-card-header>
-        <img mat-card-image [src]="product.images[0]" alt="{{ product.title }}">
-        <mat-card-content>
-          <p>{{ product.description }}</p>
-        </mat-card-content>
-        <mat-card-actions>
-          <button mat-button (click)="selectProduct(product)">Buy</button>
-          
-          
-        </mat-card-actions>
+          <img mat-card-image [src]="product.images[0]" alt="{{ product.title }}">
+          <mat-card-header>
+            <mat-card-title-group>
+              <mat-card-title>{{ product.title }}</mat-card-title>
+              <mat-card-subtitle>
+                <!-- <div>{{ product.category.name }}</div> -->
+                <div>{{ product.price | currency }}</div>
+              </mat-card-subtitle>
+            </mat-card-title-group>
+          </mat-card-header>
+          <!-- <img mat-card-image [src]="product.images[0]" alt="{{ product.title }}"> -->
+          <mat-card-content>
+            <p>{{ product.description }}</p>
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-button (click)="selectProduct(product)">Comprar</button>
+          </mat-card-actions>
+
       </mat-card>
     </div>
   </div>
 </div>
+
+
+  <section class="sctSeleccionado" *ngIf="selectedProduct">
+    <div>
+      <h2>{{ selectedProduct.title }}</h2>
+      <p>${{ selectedProduct.price}}.00</p>
+      <app-paypal-button [product]="selectedProduct"></app-paypal-button>
+      <button >Cancelar</button>
+    </div>
+  </section>
+
+<script>
+  function cancelSelection() {
+  // Obtener el elemento de la sección por su id
+  var section = document.getElementById('sctSeleccionado');
   
-  <div *ngIf="selectedProduct">
-    <h2>Selected Product</h2>
-    <p>{{ selectedProduct.title }} - ${{ selectedProduct.price}}.00</p>
-    <app-paypal-button [product]="selectedProduct"></app-paypal-button>
-  </div>
-  
+  // Ocultar la sección
+  if (section) {
+    section.style.display = 'none';
+  }
+}
+</script>
