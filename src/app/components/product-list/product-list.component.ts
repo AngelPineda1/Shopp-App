@@ -29,7 +29,7 @@ export class ProductListComponent {
 
   recargarPagina() {
     window.location.reload()
-    console.log("shkbhj");
+   
   }
   getProducts():Observable<any>{
 
