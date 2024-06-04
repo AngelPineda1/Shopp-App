@@ -38,7 +38,7 @@
       <h2>{{ selectedProduct.title }}</h2>
       <p>${{ selectedProduct.price}}.00</p>
       <app-paypal-button [product]="selectedProduct"></app-paypal-button>
-      <button >Cancelar</button>
+      <button (click)="recargarPagina()">Cancelar</button>
     </div>
   </section>
 

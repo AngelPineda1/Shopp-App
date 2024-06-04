@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { Route, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 interface Product {
   id: number;
@@ -14,7 +15,7 @@ interface Product {
 export class ProductListComponent {
   private apiUrl='https://api.escuelajs.co/api/v1/products';
 
-  constructor(private http:HttpClient) { 
+  constructor(private http:HttpClient, private router :Router) { 
 
   }
   products: any[]=[];
@@ -24,6 +25,11 @@ export class ProductListComponent {
       this.products=data;
     })
 
+  }
+
+  recargarPagina() {
+    window.location.reload()
+    console.log("shkbhj");
   }
   getProducts():Observable<any>{
 
